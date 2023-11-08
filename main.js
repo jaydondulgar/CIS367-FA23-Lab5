@@ -42,55 +42,33 @@ addCards();
 updateCards();
 
 function updateCards() {
-
-    var windowWidth = window.innerWidth;
-    console.log(windowWidth);
-    var cardWidth = 350;
     const length = data.length;
 
     const boxes = document.querySelectorAll(".carousel .box");
     
     boxes.forEach( (div, index) => {
-      
-        //let div = document.createElement('div');
-        //div.classList.add("box");
-    
         if( index < activeIndex){
-            //div.classList.add("left");
+            // left
             div.classList.remove("active");
-            //const offset = windowWidth/2 - cardWidth/2 - index * 10;
-            // div.style.transform = `translateX(${-offset}px)`;
-            
             div.style.zIndex = index;
             const offset = 100+(length-index)*2;
             div.style.transform = `translateX(-${offset}%) scale(100%)`;
-           
-            // div.style.left = `${index*8}px`
-            //div.style.transform+=` scale(${ Math.pow(0.9, length-index+1)})`;
         }
         else if(index === activeIndex)
         {
+            // middle
             div.classList.add("active");
             div.style.zIndex = 300;
             div.style.transform = `translateX(0) scale(120%)`;
-
         }
         else {
-            //div.classList.add("right");
+            //right 
             div.classList.remove("active");
-            // const offset = windowWidth/2 - cardWidth/2 - (length - index+1) * 10;
-            // console.log(offset)
-            // div.style.transform = `translateX(${offset}px)`;
             div.style.zIndex = (length - index);
             const offset = 100+(index)*2;
-
             div.style.transform = `translateX(${offset}%) scale(100%)`;
-
-            // div.style.right = `${ (length-index)*8}px`
-            //div.style.right  = `${offset}px`
         }
     });
-
 }
 
 window.addEventListener("resize", updateCards);
